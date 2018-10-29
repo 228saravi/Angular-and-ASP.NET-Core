@@ -10,8 +10,8 @@ using project_angular_asp.net_Core.Persistence;
 namespace projectangularasp.net_Core.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181029081723_initial")]
-    partial class initial
+    [Migration("20181029172832_authadd")]
+    partial class authadd
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -182,6 +182,36 @@ namespace projectangularasp.net_Core.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("project_angular_asp.net_Core.Models.Make", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Makes");
+                });
+
+            modelBuilder.Entity("project_angular_asp.net_Core.Models.Model", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("MakeId");
+
+                    b.Property<string>("name");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MakeId");
+
+                    b.ToTable("Models");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole")
@@ -224,6 +254,14 @@ namespace projectangularasp.net_Core.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser")
                         .WithMany()
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("project_angular_asp.net_Core.Models.Model", b =>
+                {
+                    b.HasOne("project_angular_asp.net_Core.Models.Make", "Make")
+                        .WithMany("Models")
+                        .HasForeignKey("MakeId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
