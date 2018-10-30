@@ -1,11 +1,24 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Injectable, Inject} from '@angular/core';
+import { HttpClient,HttpHeaders } from '@angular/common/http';
 
+import { Observable } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
 
 @Injectable()
 export class AuthService {
+  _BASE_URL: string;
+  constructor( private http: HttpClient, @Inject('BASE_URL') baseUrl: string) { 
+    this._BASE_URL=baseUrl;
+  }
 
-  constructor( private http: HttpClient) { }
-
+  login(email:string, password:string) : Observable<any>{ 
+    
+    return this.http.post<any>( this._BASE_URL+ 'api/account/login',JSON.stringify({Email:email,Password:password}), {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json"
+      })
+    })
+    
+  }
 
 }

@@ -10,8 +10,8 @@ using project_angular_asp.net_Core.Persistence;
 namespace projectangularasp.net_Core.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181029172832_authadd")]
-    partial class authadd
+    [Migration("20181030071639_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

@@ -34,14 +34,14 @@ namespace project_angular_asp.net_Core.Controllers
         }
         
         [HttpPost("[action]")]
-        public async Task<object> Login(LoginDto model)
+        public async Task<object> Login([FromBody]LoginDto model)
         {
             var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, false, false);
             
             if (result.Succeeded)
             {
                 var appUser = _userManager.Users.SingleOrDefault(r => r.Email == model.Email);
-                return await GenerateJwtToken(model.Email, appUser);
+                return Ok(new { Token = await GenerateJwtToken(model.Email, appUser), name = model.Email }); 
             }
             
             throw new ApplicationException("INVALID_LOGIN_ATTEMPT");
@@ -60,7 +60,7 @@ namespace project_angular_asp.net_Core.Controllers
             if (result.Succeeded)
             {
                 await _signInManager.SignInAsync(user, false);
-                return await GenerateJwtToken(model.Email, user);
+                return Ok(new { Token = await GenerateJwtToken(model.Email, user) }); 
             }
             
             throw new ApplicationException("UNKNOWN_ERROR");
