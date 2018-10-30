@@ -1,4 +1,4 @@
-import { Component, OnInit  } from '@angular/core';
+import { Component, OnInit , Output, EventEmitter} from '@angular/core';
 import { AuthService } from '../auth.service';
 
 import {Router} from "@angular/router";
@@ -9,29 +9,25 @@ import {Router} from "@angular/router";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
-  Email : string ='';
-  Password : string ='';
-  constructor(private authService: AuthService, router: Router) { 
+  @Output() jwtAuth: EventEmitter<any> = new EventEmitter();
+  _router : Router;
+  constructor(private authService: AuthService,router: Router) { 
+    this._router=router;
     if(localStorage.getItem("jwt")){
-      router.navigate(['/'])
+      router.navigate(['/']);
     }
   }
 
   ngOnInit() {
   }
-  onSubmit(){
-     this.authService.login(this.Email,this.Password).subscribe(response => {
-        localStorage.setItem("jwt", (<any>response).token);
+  onSubmit(Email,Password){
+    console.log(Email);
+     this.authService.login(Email.value,Password.value).subscribe(response => {
+        localStorage.setItem("jwt", (<any>response).token);    
+        this._router.navigate(['/'])
       }, err => {
         console.log(err);
       });
-  }
-  onEmail(event:Event){
-    this.Email=(<HTMLInputElement>event.target).value;    
-  }
-  onPassword(event:Event){
-    this.Password=(<HTMLInputElement>event.target).value;
   }
 
 

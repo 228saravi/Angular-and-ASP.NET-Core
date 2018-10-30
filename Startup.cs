@@ -91,10 +91,10 @@ namespace project_angular_asp.net_Core
 
                 spa.Options.SourcePath = "ClientApp";
 
-                // if (env.IsDevelopment())
-                // {
+                if (env.IsDevelopment())
+                {
                     spa.UseAngularCliServer(npmScript: "start");
-                // }
+                }
             });
             
         }

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace projectangularasp.net_Core.Migrations
 {
-    public partial class initial : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -48,16 +48,17 @@ namespace projectangularasp.net_Core.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Makes",
+                name: "Hero",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    name = table.Column<string>(nullable: true)
+                    name = table.Column<string>(nullable: true),
+                    description = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Makes", x => x.Id);
+                    table.PrimaryKey("PK_Hero", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -166,26 +167,6 @@ namespace projectangularasp.net_Core.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "Models",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    name = table.Column<string>(nullable: true),
-                    MakeId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Models", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Models_Makes_MakeId",
-                        column: x => x.MakeId,
-                        principalTable: "Makes",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -224,11 +205,6 @@ namespace projectangularasp.net_Core.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Models_MakeId",
-                table: "Models",
-                column: "MakeId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -249,16 +225,13 @@ namespace projectangularasp.net_Core.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Models");
+                name: "Hero");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
-                name: "Makes");
         }
     }
 }

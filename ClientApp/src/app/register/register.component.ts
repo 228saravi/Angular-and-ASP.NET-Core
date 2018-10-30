@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../auth.service';
 
+import {Router} from "@angular/router";
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -7,9 +9,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor() { }
+
+  _router : Router;
+  constructor(private authService: AuthService,router: Router) { 
+    this._router=router;
+    if(localStorage.getItem("jwt")){
+      router.navigate(['/']);
+    }
+  }
 
   ngOnInit() {
+  }
+  onSubmit(Email, Password){
+     this.authService.register(Email.value,Password.value).subscribe(response => {
+        localStorage.setItem("jwt", (<any>response).token);        
+        this._router.navigate(['/'])
+      }, err => {
+        console.log(err);
+      });
   }
 
 }

@@ -6,7 +6,7 @@ namespace project_angular_asp.net_Core.Persistence
 {
     public class ApplicationDbContext : IdentityDbContext
     {
-        public DbSet<Make> Makes { get; set; }
+        public DbSet<Hero> Hero { get; set; }
         public ApplicationDbContext(DbContextOptions options)
                 : base(options)
         {

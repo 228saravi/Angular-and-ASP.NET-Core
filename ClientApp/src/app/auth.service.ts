@@ -20,5 +20,14 @@ export class AuthService {
     })
     
   }
+  register(email:string, password:string) : Observable<any>{ 
+    
+    return this.http.post<any>( this._BASE_URL+ 'api/account/register',JSON.stringify({Email:email,Password:password}), {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json"
+      })
+    })
+    
+  }
 
 }

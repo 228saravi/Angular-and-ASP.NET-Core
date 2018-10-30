@@ -41,14 +41,14 @@ namespace project_angular_asp.net_Core.Controllers
             if (result.Succeeded)
             {
                 var appUser = _userManager.Users.SingleOrDefault(r => r.Email == model.Email);
-                return Ok(new { Token = await GenerateJwtToken(model.Email, appUser), name = model.Email }); 
+                return Ok(new { Token = await GenerateJwtToken(model.Email, appUser)}); 
             }
             
             throw new ApplicationException("INVALID_LOGIN_ATTEMPT");
         }
        
         [HttpPost("[action]")]
-        public async Task<object> Register(RegisterDto model)
+        public async Task<object> Register([FromBody]RegisterDto model)
         {
             var user = new IdentityUser
             {

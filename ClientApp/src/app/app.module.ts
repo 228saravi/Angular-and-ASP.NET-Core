@@ -32,6 +32,7 @@ import { AuthService } from './auth.service';
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'login', component: LoginComponent },
+      { path: 'register', component: RegisterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
     ])
   ],
