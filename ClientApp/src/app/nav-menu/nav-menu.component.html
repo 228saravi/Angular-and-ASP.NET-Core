@@ -7,9 +7,12 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">Project name</a>
+        <a class="navbar-brand" routerLink="/">Project name</a>
       </div>
       <div id="navbar" class="navbar-collapse collapse">
+        <ul  class="nav navbar-nav navbar-left">
+            <li><a routerLink="/basket" class="btn btn-danger">Корзина героев {{basketService.basketHero.length}}</a></li>
+        </ul>
         <ul *ngIf="!heroService.token; else noServer" class="nav navbar-nav navbar-right">
           <li><a routerLink="/login">Login</a></li>
           <li><a routerLink="/register">Register</a></li>

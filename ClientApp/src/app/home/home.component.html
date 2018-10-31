@@ -5,7 +5,8 @@
       <div class="caption">
         <h3>{{hero.name}}</h3>
         <p>{{hero.description}}</p>
-        <p><a routerLink="/deteil/{{hero.id}}" class="btn btn-default" role="button">detail</a></p>
+        <p><a routerLink="/deteil/{{hero.id}}" class="btn btn-default" role="button">detail</a>
+          <a (click)="onClickBasket(hero)" class="btn btn-default" role="button">Add basket</a></p>
       </div>
     </div>
   </div>

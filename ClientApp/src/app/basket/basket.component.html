@@ -1,0 +1,15 @@
+<p>
+  basket works!
+</p>
+
+<div class="row">
+  <div class="col-sm-6 col-md-4">
+    <div class="thumbnail" *ngFor='let items of basket'>
+      <div class="caption">
+        <h3>{{items.name}}</h3>
+        <p>{{items.description}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { HeroService } from '../hero.service';
+import {BasketService} from '../basket.service';
 @Component({
   selector: 'app-nav-menu',
   templateUrl: './nav-menu.component.html',
@@ -7,7 +8,9 @@ import { HeroService } from '../hero.service';
   
 })
 export class NavMenuComponent {
-  constructor(private heroService: HeroService){}
+  constructor(
+    private heroService: HeroService,
+    private basketService: BasketService){}
 
   onExit(){
     localStorage.removeItem("jwt");

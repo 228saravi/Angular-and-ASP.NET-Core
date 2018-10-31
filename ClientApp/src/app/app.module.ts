@@ -11,8 +11,11 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthService } from './auth.service';
 import { HeroService } from './hero.service';
+import { BasketService } from './basket.service';
 import { HeroComponent } from './hero/hero.component';
 import { HeroCreateComponent } from './hero-create/hero-create.component';
+import { BasketComponent } from './basket/basket.component';
+
 
 @NgModule({
   declarations: [
@@ -22,7 +25,8 @@ import { HeroCreateComponent } from './hero-create/hero-create.component';
     LoginComponent,
     RegisterComponent,
     HeroComponent,
-    HeroCreateComponent
+    HeroCreateComponent,
+    BasketComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -34,9 +38,10 @@ import { HeroCreateComponent } from './hero-create/hero-create.component';
       { path: 'register', component: RegisterComponent },
       { path: 'deteil/:id', component: HeroComponent },
       { path: 'create', component: HeroCreateComponent },
+      { path: 'basket', component: BasketComponent },
     ])
   ],
-  providers: [AuthService, HeroService],
+  providers: [AuthService, HeroService, BasketService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
