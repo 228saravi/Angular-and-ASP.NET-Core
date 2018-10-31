@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HeroService } from '../hero.service';
 @Component({
   selector: 'app-nav-menu',
   templateUrl: './nav-menu.component.html',
@@ -6,14 +7,10 @@ import { Component } from '@angular/core';
   
 })
 export class NavMenuComponent {
-  auth : boolean = true;
-  ngOnInit() {
-    if(localStorage.getItem("jwt")){
-      this.auth = false;
-    }
-  }
+  constructor(private heroService: HeroService){}
+
   onExit(){
-    localStorage.removeItem("jwt")
-    this.auth = true;
+    localStorage.removeItem("jwt");
+    this.heroService.token=null;
   }
 }

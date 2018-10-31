@@ -1,5 +1,9 @@
 export class Hero{
-    Id : number;
+    id : number;
     name : string;
     description : string;
+    constructor(){
+        this.name='';
+        this.description='';
+    }
 }

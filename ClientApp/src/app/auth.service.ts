@@ -2,12 +2,13 @@ import { Injectable, Inject} from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
 
 @Injectable()
 export class AuthService {
   _BASE_URL: string;
-  constructor( private http: HttpClient, @Inject('BASE_URL') baseUrl: string) { 
+  constructor( 
+    private http: HttpClient, 
+    @Inject('BASE_URL') baseUrl: string) { 
     this._BASE_URL=baseUrl;
   }
 

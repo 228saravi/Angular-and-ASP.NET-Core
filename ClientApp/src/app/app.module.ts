@@ -7,23 +7,22 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
-import { CounterComponent } from './counter/counter.component';
-import { FetchDataComponent } from './fetch-data/fetch-data.component';
-import { HeroesComponent } from './heroes/heroes.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthService } from './auth.service';
+import { HeroService } from './hero.service';
+import { HeroComponent } from './hero/hero.component';
+import { HeroCreateComponent } from './hero-create/hero-create.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    CounterComponent,
-    FetchDataComponent,
-    HeroesComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    HeroComponent,
+    HeroCreateComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -31,12 +30,13 @@ import { AuthService } from './auth.service';
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'login', component: LoginComponent },
+      { path: 'login', component: LoginComponent }, 
       { path: 'register', component: RegisterComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
+      { path: 'deteil/:id', component: HeroComponent },
+      { path: 'create', component: HeroCreateComponent },
     ])
   ],
-  providers: [AuthService],
+  providers: [AuthService, HeroService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

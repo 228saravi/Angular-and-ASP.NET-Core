@@ -1,0 +1,15 @@
+<div *ngIf="hero">
+<form (ngSubmit)="onSubmit()">
+  <div class="form-group">
+  <label for="exampleInputName">Name</label>
+    <input type="text" name="nameHero" class="form-control" id="exampleInputName" placeholder="Name"  [(ngModel)]="hero.name">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputDescription">description</label>
+  <textarea class="form-control" name="descriptionHero" rows="3" id="exampleInputDescription" [(ngModel)]="hero.description"></textarea>
+  </div>
+  <button type="submit" class="btn btn-default">Save</button>  
+  <button type="button" class="btn btn-danger" (click)="onDelete()">Delete</button>
+
+</form>
+</div>
