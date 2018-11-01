@@ -2,6 +2,7 @@ import { Injectable, Inject} from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
+import { reject } from 'q';
 
 @Injectable()
 export class AuthService {
@@ -12,6 +13,7 @@ export class AuthService {
     this._BASE_URL=baseUrl;
   }
 
+  
   login(email:string, password:string) : Observable<any>{ 
     
     return this.http.post<any>( this._BASE_URL+ 'api/account/login',JSON.stringify({Email:email,Password:password}), {
