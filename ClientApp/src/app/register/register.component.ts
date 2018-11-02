@@ -27,13 +27,13 @@ export class RegisterComponent implements OnInit {
   }
   onSubmit(f: NgForm){
     console.log(f);
-    //  this.authService.register(form.value.email,form.value.Password).subscribe(response => {
-    //     localStorage.setItem("jwt", (<any>response).token); 
-    //     this.heroServise.token =(<any>response).token       
-    //     this._router.navigate(['/'])
-    //   }, err => {
-    //     console.log(err);
-    //   });
+     this.authService.register(f.value.email,f.value.Password).subscribe(response => {
+        localStorage.setItem("jwt", (<any>response).token); 
+        this.heroServise.token =(<any>response).token       
+        this._router.navigate(['/'])
+      }, err => {
+        console.log(err);
+      });
   }
 
 }
