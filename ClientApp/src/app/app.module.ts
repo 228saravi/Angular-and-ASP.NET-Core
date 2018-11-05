@@ -9,12 +9,14 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { AuthService } from './auth.service';
-import { HeroService } from './hero.service';
-import { BasketService } from './basket.service';
 import { HeroComponent } from './hero/hero.component';
 import { HeroCreateComponent } from './hero-create/hero-create.component';
 import { BasketComponent } from './basket/basket.component';
+
+import { AuthService } from './auth.service';
+import { HeroService } from './hero.service';
+import { BasketService } from './basket.service';
+import { AuthGuardService } from './auth-guard.service';
 
 
 @NgModule({
@@ -36,12 +38,12 @@ import { BasketComponent } from './basket/basket.component';
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'login', component: LoginComponent }, 
       { path: 'register', component: RegisterComponent },
-      { path: 'deteil/:id', component: HeroComponent },
-      { path: 'create', component: HeroCreateComponent },
+      { path: 'deteil/:id', canActivate:[AuthGuardService], component: HeroComponent },
+      { path: 'create', canActivate:[AuthGuardService], component: HeroCreateComponent },
       { path: 'basket', component: BasketComponent },
     ])
   ],
-  providers: [AuthService, HeroService, BasketService],
+  providers: [AuthService, HeroService, BasketService, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
