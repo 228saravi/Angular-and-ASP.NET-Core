@@ -15,5 +15,6 @@ export class NavMenuComponent {
   onExit(){
     localStorage.removeItem("jwt");
     this.heroService.token=null;
+    
   }
 }
