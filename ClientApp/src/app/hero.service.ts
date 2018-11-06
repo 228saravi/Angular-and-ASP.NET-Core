@@ -1,6 +1,6 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Hero } from './hero';
 
 
@@ -8,13 +8,13 @@ import { Hero } from './hero';
 export class HeroService {
   _BASE_URL: string;
   token : string;
+  loading=new Subject();
   constructor( private http: HttpClient, @Inject('BASE_URL') baseUrl: string) { 
     this.token=localStorage.getItem("jwt");
     this._BASE_URL=baseUrl;
   }
 
   getHero(): Observable<Hero[]>{ 
-    
     return this.http.get<Hero[]>( this._BASE_URL+ 'api/hero')
     
   }

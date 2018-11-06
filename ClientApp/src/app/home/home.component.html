@@ -1,5 +1,8 @@
 <div class="alert alert-success" [ngStyle]="{display: addBasketEmit ? 'block' : 'none'}" role="alert">Ололло карзина</div>
 <button routerLink="/create" class="btn btn-dark" >Add Hero</button>
+<div id="preloader" [ngStyle]="{display: loading ? 'block' : 'none'}">
+  <div id="loader"></div>
+</div>
 <div class="row">
   <div class="col-sm-6 col-md-4">
     <div class="thumbnail" *ngFor='let hero of heroes'>
