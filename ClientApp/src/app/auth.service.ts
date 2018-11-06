@@ -14,9 +14,9 @@ export class AuthService {
   }
 
   
-  login(email:string, password:string) : Observable<any>{ 
+  login(userData: {Email:string, Password:string}) : Observable<any>{ 
     
-    return this.http.post<any>( this._BASE_URL+ 'api/account/login',JSON.stringify({Email:email,Password:password}), {
+    return this.http.post<any>( this._BASE_URL+ 'api/account/login',JSON.stringify(userData), {
       headers: new HttpHeaders({
         "Content-Type": "application/json"
       })

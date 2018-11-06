@@ -1,8 +1,9 @@
-import { Component, OnInit , Output, EventEmitter} from '@angular/core';
+import { Component, OnInit , Output, EventEmitter, ViewChild} from '@angular/core';
 import { AuthService } from '../auth.service';
 import { HeroService } from '../hero.service';
 
 import {Router} from "@angular/router";
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  
+  @ViewChild('loginForm') loginForm: NgForm;
   _router : Router;
 
   constructor(
@@ -24,10 +25,15 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    // this.loginForm.setValue({
+    //   userData:{
+    //     email: "228saravi@gmail.com"
+    //   }
+    // });
   }
-  onSubmit(Email,Password){
-    console.log(Email);
-     this.authService.login(Email.value,Password.value).subscribe(response => {
+  onSubmit(){
+    console.log(this.loginForm);
+     this.authService.login(this.loginForm.value.userData).subscribe(response => {
         localStorage.setItem("jwt", (<any>response).token);    
         
         this.heroServise.token =(<any>response).token       
