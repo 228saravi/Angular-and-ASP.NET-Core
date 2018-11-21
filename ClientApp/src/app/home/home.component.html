@@ -1,11 +1,14 @@
 <div class="alert alert-success" [ngStyle]="{display: addBasketEmit ? 'block' : 'none'}" role="alert">Ололло карзина</div>
-<button routerLink="/create" class="btn btn-dark" >Add Hero</button>
-<div id="preloader" [ngStyle]="{display: loading ? 'block' : 'none'}">
-  <div id="loader"></div>
+<div class="row button-add">
+  <div class="col-md-12">
+    <button routerLink="/create" class="btn btn-dark"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Hero</button>
+  </div>
 </div>
+
+<app-loader [loading]="loading"></app-loader>
 <div class="row">
-  <div class="col-sm-6 col-md-4">
-    <div class="thumbnail" *ngFor='let hero of heroes'>
+  <div class="col-sm-4 col-md-3" *ngFor='let hero of heroes'>
+    <div class="thumbnail">
       <div class="caption">
         <h3>{{hero.name}}</h3>
         <p>{{hero.description}}</p>

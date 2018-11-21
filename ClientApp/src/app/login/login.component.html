@@ -1,15 +1,25 @@
-<form (ngSubmit)="onSubmit()" #loginForm="ngForm">
-  <div ngModelGroup="userData" #userData="ngModelGroup">
-    <div class="form-group">
-      <label for="exampleInputEmail1">Email address</label>
-      <input name="Email" type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" ngModel required email #email="ngModel">
-      <span class="help-block" *ngIf="!email.valid && email.touched">Please enter a valid email!!</span>
+<app-loader [loading]="loaded">
+  </app-loader>
+<div class="login-form" *ngIf="!loaded">
+  <div class="main-div">
+    <div class="panel">
+      <h2>Login</h2>
+      <p>Please enter your email and password</p>
     </div>
-    <div class="form-group">
-      <label for="exampleInputPassword1">Password</label>
-      <input name="Password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" ngModel required password #password="ngModel">
-      <span class="help-block" *ngIf="!password.valid && password.touched">Please enter a valid password!!</span>
-    </div>
+    <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+      <div ngModelGroup="userData" #userData="ngModelGroup">
+        <div class="form-group">
+          <input name="Email" type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" ngModel
+            required email #email="ngModel">
+          <span class="help-block" *ngIf="!email.valid && email.touched">Please enter a valid email!!</span>
+        </div>
+        <div class="form-group">
+          <input name="Password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"
+            ngModel required password #password="ngModel">
+          <span class="help-block" *ngIf="!password.valid && password.touched">Please enter a valid password!!</span>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">Submit</button>
+    </form>
   </div>
-  <button type="submit" class="btn btn-default" [disabled]="loginForm.invalid">Submit</button>
-</form>
+</div>

@@ -1,8 +1,8 @@
-import { Component, OnInit , Output, EventEmitter, ViewChild} from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ViewChild } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { HeroService } from '../hero.service';
 
-import {Router} from "@angular/router";
+import { Router } from "@angular/router";
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -12,15 +12,17 @@ import { NgForm } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
   @ViewChild('loginForm') loginForm: NgForm;
-  _router : Router;
+  _router: Router;
+  loaded: boolean;
 
   constructor(
     private authService: AuthService,
     private heroServise: HeroService,
-    router: Router) { 
-      this._router=router;
-      if(localStorage.getItem("jwt")){
-        router.navigate(['/']);
+    router: Router) {
+    this._router = router;
+    this.loaded = false;
+    if (localStorage.getItem("jwt")) {
+      router.navigate(['/']);
     }
   }
 
@@ -31,16 +33,19 @@ export class LoginComponent implements OnInit {
     //   }
     // });
   }
-  onSubmit(){
+  onSubmit() {
+    this.loaded = true;
     console.log(this.loginForm);
-     this.authService.login(this.loginForm.value.userData).subscribe(response => {
-        localStorage.setItem("jwt", (<any>response).token);    
-        
-        this.heroServise.token =(<any>response).token       
-        this._router.navigate(['/'])
-      }, err => {
-        console.log(err);
-      });
+    this.authService.login(this.loginForm.value.userData).subscribe(response => {
+      localStorage.setItem("jwt", (<any>response).token);
+
+      this.heroServise.token = (<any>response).token
+      this.loaded = false;
+      this._router.navigate(['/'])
+    }, err => {
+      console.log(err);
+      this.loaded = false;
+    });
   }
 
 

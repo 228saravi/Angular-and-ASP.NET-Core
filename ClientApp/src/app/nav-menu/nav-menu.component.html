@@ -1,64 +1,29 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" routerLink="/">Project name</a>
-      </div>
-      <div id="navbar" class="navbar-collapse collapse">
-        <ul  class="nav navbar-nav navbar-left">
-            <li><a routerLink="/basket" class="btn btn-danger">Корзина героев {{basketService.basketHero.length}}</a></li>
-        </ul>
-        <ul *ngIf="!heroService.token; else noServer" class="nav navbar-nav navbar-right">
-          <li><a routerLink="/login">Login</a></li>
-          <li><a routerLink="/register">Register</a></li>
-          
-        </ul>
-        <ng-template #noServer>
-            <ul  class="nav navbar-nav navbar-right">
-             <li><a (click) = "onExit()">Exit</a></li>
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" routerLink="/">Demo jwt for asp.net</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul *ngIf="!heroService.token; else noServer" class="nav navbar-nav navbar-right">
+
+                <li><a routerLink="/login">Login</a></li>
+                <li><a routerLink="/register">Register</a></li>
+
             </ul>
-        </ng-template>
-        
-      </div>
+            <ng-template #noServer>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a routerLink="/basket">Корзина героев {{basketService.basketHero.length}}</a></li>
+                    <li><a (click)="onExit()">Exit</a></li>
+                </ul>
+            </ng-template>
+
+        </div>
     </div>
 </nav>
-
-
-<!-- <div class='main-nav'>
-    <div class='navbar navbar-inverse'>
-        <div class='navbar-header'>
-            <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse' [attr.aria-expanded]='isExpanded' (click)='toggle()'>
-                <span class='sr-only'>Toggle navigation</span>
-                <span class='icon-bar'></span>
-                <span class='icon-bar'></span>
-                <span class='icon-bar'></span>
-            </button>
-            <a class='navbar-brand' [routerLink]='["/"]'>project_angular_asp.net_Core</a>
-        </div>
-        <div class='clearfix'></div>
-        <div class='navbar-collapse collapse' [ngClass]='{ "in": isExpanded }'>
-            <ul class='nav navbar-nav'>
-                <li [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'>
-                    <a [routerLink]='["/"]' (click)='collapse()'>
-                        <span class='glyphicon glyphicon-home'></span> Home
-                    </a>
-                </li>
-                <li [routerLinkActive]='["link-active"]'>
-                    <a [routerLink]='["/counter"]' (click)='collapse()'>
-                        <span class='glyphicon glyphicon-education'></span> Counter
-                    </a>
-                </li>
-                <li [routerLinkActive]='["link-active"]'>
-                    <a [routerLink]='["/fetch-data"]' (click)='collapse()'>
-                        <span class='glyphicon glyphicon-th-list'></span> Fetch data
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</div> -->

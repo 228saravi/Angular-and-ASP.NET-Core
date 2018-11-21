@@ -17,6 +17,7 @@ import { AuthService } from './auth.service';
 import { HeroService } from './hero.service';
 import { BasketService } from './basket.service';
 import { AuthGuardService } from './auth-guard.service';
+import { LoaderComponent } from './loader/loader.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { AuthGuardService } from './auth-guard.service';
     RegisterComponent,
     HeroComponent,
     HeroCreateComponent,
-    BasketComponent
+    BasketComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

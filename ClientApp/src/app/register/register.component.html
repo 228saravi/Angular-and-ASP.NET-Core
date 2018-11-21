@@ -1,13 +1,28 @@
-<form (ngSubmit)="onSubmit()" #f="ngForm">
-  <div class="form-group">
-    <label for="exampleInputEmail1">Email address</label>
-    <input name="email" type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" ngModel required email #email="ngModel">
-    <span class="help-block" *ngIf="!email.valid && email.touched">Please enter a valid email!!</span>
+<app-loader [loading]="loaded">
+  </app-loader>
+
+  <div class="LoginForm" *ngIf="!loaded">
+    <div class="login-form">
+      <div class="main-div">
+        <div class="panel">
+          <h2>Registr</h2>
+          <p>Please enter your email and password</p>
+        </div>
+
+        <form (ngSubmit)="onSubmit()" #f="ngForm" id="Login">
+          <div class="form-group">
+            <input name="email" type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" ngModel
+              required email #email="ngModel">
+            <span class="help-block" *ngIf="!email.valid && email.touched">Please enter a valid email!!</span>
+          </div>
+          <div class="form-group">
+
+            <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"
+              ngModel required password #password="ngModel">
+            <span class="help-block" *ngIf="!password.valid && password.touched">Please enter a valid password!!</span>
+          </div>
+          <button type="submit" class="btn btn-primary" [disabled]="!f.valid">Submit</button>
+        </form>
+      </div>
+    </div>
   </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Password</label>
-    <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" ngModel required password #password="ngModel">
-    <span class="help-block" *ngIf="!password.valid && password.touched">Please enter a valid password!!</span>
-  </div>
-  <button type="submit" class="btn btn-default" [disabled]="!f.valid">Submit</button>
-</form>
